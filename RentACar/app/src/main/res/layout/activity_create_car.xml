@@ -7,7 +7,7 @@
     tools:context=".CreateCar">
 
     <EditText
-        android:id="@+id/modelEditText"
+        android:id="@+id/modeloEditText"
         android:layout_width="178dp"
         android:layout_height="48dp"
         android:hint="insertar modelo"
@@ -64,7 +64,9 @@
         app:layout_constraintHorizontal_bias="0.653"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.396" />
+        app:layout_constraintVertical_bias="0.396"
+        android:entries="@array/SpinnerItems"
+        />
 
     <TextView
         android:id="@+id/colorTextView"
@@ -106,6 +108,7 @@
         android:id="@+id/createButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="onClick"
         android:text="Crear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
