@@ -8,7 +8,9 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -18,11 +20,10 @@ public class MainActivity extends AppCompatActivity {
 
     private RentACarDB dbHelper;
     private SQLiteDatabase db;
-    ListView list;
+    private ListView list;
+    private String[] columns;
+    private EditText filtro;
 
-    public SQLiteDatabase getDb() {
-        return db;
-    }
 
     @SuppressLint("Range")
     @Override
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         dbHelper = new RentACarDB(getApplicationContext(), "RentACar.db");
         db = dbHelper.getWritableDatabase();
 
-        String[] columns = {
+        columns = new String[]{
                 CarContract.CarEntry._ID,
                 CarContract.CarEntry.COLUMN_NAME_MODELO,
                 CarContract.CarEntry.COLUMN_NAME_MATRICULA
@@ -60,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
         list.setAdapter(adapter);
     }
 
+    public SQLiteDatabase getDb() {
+        return db;
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -67,7 +72,45 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View v){
+        switch (v.getId()) {
+            case R.id.buscarButton: search(); break;
+            case R.id.createButton: createCar(); break;
+        }
+
+    }
+
+    private void createCar(){
         Intent intento = new Intent(this, CreateCar.class);
         startActivity(intento);
     }
+
+    @SuppressLint("Range")
+    public void search() {
+        String where = CarContract.CarEntry.COLUMN_NAME_MATRICULA + " LIKE ? ";
+        filtro = (EditText) findViewById(R.id.filtrarText);
+        String[] whereArgs = { '%' + filtro.getText().toString().toLowerCase() + '%'};
+        Cursor cursor  = db.query(CarContract.CarEntry.TABLE_NAME,columns
+                , where, whereArgs, null, null, null);
+        List<String> modeloList = new ArrayList();
+        List<String> matriculaList = new ArrayList();
+        try {
+            while (cursor.moveToNext()) {
+                modeloList.add(cursor.getString(cursor.getColumnIndex(CarContract.CarEntry.COLUMN_NAME_MODELO)));
+                matriculaList.add(cursor.getString(cursor.getColumnIndex(CarContract.CarEntry.COLUMN_NAME_MATRICULA)));
+            }
+        } finally {
+            cursor.close();
+        }
+
+        String[] modelo = new String[modeloList.size()];
+        modelo = modeloList.toArray(modelo);
+        String[] matricula = new String[matriculaList.size()];
+        matricula = matriculaList.toArray(matricula);
+
+        ListCarAdapter adapter=new ListCarAdapter(this,modelo ,matricula);
+        list=(ListView)findViewById(R.id.listCar);
+        list.setAdapter(adapter);
+    }
+
+
 }
