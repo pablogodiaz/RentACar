@@ -9,19 +9,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ListCarAdapter extends ArrayAdapter<String> {
+public class ListCarAdapter extends ArrayAdapter<Car> {
 
     private final Activity context;
-    private final String[] modelo;
-    private final String[] matricula;
+    private final Car[] cars;
 
-    public ListCarAdapter(Activity context, String[] modelo,String[] matricula) {
-        super(context, R.layout.listcar, modelo);
+    public ListCarAdapter(Activity context, Car[] cars) {
+        super(context, R.layout.listcar, cars);
         // TODO Auto-generated constructor stub
 
         this.context = context;
-        this.modelo = modelo;
-        this.matricula = matricula;
+        this.cars = cars;
 
     }
 
@@ -32,8 +30,8 @@ public class ListCarAdapter extends ArrayAdapter<String> {
         TextView modelTextView = (TextView) rowView.findViewById(R.id.modelTextViewList);
         TextView matriculaTextView = (TextView) rowView.findViewById(R.id.matriculaTextViewList);
 
-        modelTextView.setText(modelo[position]);
-        matriculaTextView.setText(matricula[position]);
+        modelTextView.setText(cars[position].getModelo());
+        matriculaTextView.setText(cars[position].getMatricula());
         return rowView;
 
     };

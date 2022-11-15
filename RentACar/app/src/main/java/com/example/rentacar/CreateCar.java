@@ -25,10 +25,10 @@ public class CreateCar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_car);
-        modeloEditText = (EditText) findViewById(R.id.modeloEditText);
-        matriculaEditText = (EditText) findViewById(R.id.matriculaEditText);
-        KmEditText = (EditText) findViewById(R.id.KmEditTextNumber);
-        colorSpinner = (Spinner) findViewById(R.id.colorEditText);
+        modeloEditText = (EditText) findViewById(R.id.modeloEditText2);
+        matriculaEditText = (EditText) findViewById(R.id.matriculaEditText2);
+        KmEditText = (EditText) findViewById(R.id.KmEditTextNumber2);
+        colorSpinner = (Spinner) findViewById(R.id.colorEditText2);
         dbHelper = new RentACarDB(getApplicationContext(), "RentACar.db");
         db = dbHelper.getWritableDatabase();
     }
@@ -56,7 +56,7 @@ public class CreateCar extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Introduzca una matricula",Toast.LENGTH_SHORT).show();
         }
         try{
-            Integer.parseInt(km);
+            Double.parseDouble(km);
             values.put(CarContract.CarEntry.COLUMN_NAME_KM,km);
         }catch (Exception e){
             Toast.makeText(getApplicationContext(),"Introduzca un kilometraje",Toast.LENGTH_SHORT).show();

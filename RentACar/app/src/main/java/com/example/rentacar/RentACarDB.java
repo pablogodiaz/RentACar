@@ -11,10 +11,10 @@ public class RentACarDB extends SQLiteOpenHelper {
     public static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + CarContract.CarEntry.TABLE_NAME + " (" +
                     CarContract.CarEntry._ID + " INTEGER PRIMARY KEY," +
-                    CarContract.CarEntry.COLUMN_NAME_MATRICULA + " TEXT, " +
+                    CarContract.CarEntry.COLUMN_NAME_MATRICULA + " TEXT UNIQUE, " +
                     CarContract.CarEntry.COLUMN_NAME_MODELO + " TEXT UNIQUE," +
                     CarContract.CarEntry.COLUMN_NAME_COLOR + " TEXT, " +
-                    CarContract.CarEntry.COLUMN_NAME_KM + " INT " +
+                    CarContract.CarEntry.COLUMN_NAME_KM + " DOUBLE " +
                     " )";
 
     public static final String SQL_DELETE_ENTRIES =
