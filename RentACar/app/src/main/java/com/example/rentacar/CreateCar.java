@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class CreateCar extends AppCompatActivity {
 
@@ -34,18 +35,43 @@ public class CreateCar extends AppCompatActivity {
 
     public void onClick(View v){
         createCar();
-        Intent intento = new Intent(this, MainActivity.class);
-        startActivity(intento);
     }
 
     private void createCar() {
         // Adición de valores a la BD
         ContentValues values = new ContentValues();
-        values.put(CarContract.CarEntry.COLUMN_NAME_MODELO, modeloEditText.getText().toString());
-        values.put(CarContract.CarEntry.COLUMN_NAME_MATRICULA, matriculaEditText.getText().toString());
-        values.put(CarContract.CarEntry.COLUMN_NAME_COLOR, matriculaEditText.getText().toString());
+        String modelo =  modeloEditText.getText().toString().toLowerCase();
+        String matricula = matriculaEditText.getText().toString().toLowerCase();
+        String km = KmEditText.getText().toString().toLowerCase();
+
+        if(!modelo.equalsIgnoreCase("")){
+            values.put(CarContract.CarEntry.COLUMN_NAME_MODELO,modelo);
+        }else{
+            Toast.makeText(getApplicationContext(),"Introduzca un modelo",Toast.LENGTH_SHORT).show();
+
+        }
+        if(!matricula.equalsIgnoreCase("")){
+            values.put(CarContract.CarEntry.COLUMN_NAME_MATRICULA,matricula);
+        }else{
+            Toast.makeText(getApplicationContext(),"Introduzca una matricula",Toast.LENGTH_SHORT).show();
+        }
+        try{
+            Integer.parseInt(km);
+            values.put(CarContract.CarEntry.COLUMN_NAME_KM,km);
+        }catch (Exception e){
+            Toast.makeText(getApplicationContext(),"Introduzca un kilometraje",Toast.LENGTH_SHORT).show();
+        }
         values.put(CarContract.CarEntry.COLUMN_NAME_COLOR,colorSpinner.getSelectedItem().toString());
-        db.insert(CarContract.CarEntry.TABLE_NAME,null,values);
+
+        if(values.get(CarContract.CarEntry.COLUMN_NAME_MODELO) != null
+                && values.get(CarContract.CarEntry.COLUMN_NAME_MATRICULA) != null
+                && values.get(CarContract.CarEntry.COLUMN_NAME_KM) != null){
+
+            db.insert(CarContract.CarEntry.TABLE_NAME,null,values);
+            Intent intento = new Intent(this, MainActivity.class);
+            startActivity(intento);
+
+        }
     }
 
 }

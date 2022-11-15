@@ -7,4 +7,6 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="create_car">create car</string>
+    <string name="filtrar_por_modelo">filtrar por modelo...</string>
 </resources>
