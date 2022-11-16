@@ -1,12 +1,11 @@
 package com.example.rentacar;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ListCarAdapter extends ArrayAdapter<Car> {
@@ -27,12 +26,17 @@ public class ListCarAdapter extends ArrayAdapter<Car> {
         LayoutInflater inflater=context.getLayoutInflater();
         View rowView=inflater.inflate(R.layout.listcar, null,true);
 
+        // Obtenemos los componentes de la vista
         TextView modelTextView = (TextView) rowView.findViewById(R.id.modelTextViewList);
         TextView matriculaTextView = (TextView) rowView.findViewById(R.id.matriculaTextViewList);
 
-        modelTextView.setText(cars[position].getModelo());
-        matriculaTextView.setText(cars[position].getMatricula());
+        // Comprobamos que el valor existe
+        if(cars[position] != null){
+            // Introducimos los datos a mostrar
+            modelTextView.setText(cars[position].getModelo());
+            matriculaTextView.setText(cars[position].getMatricula());
+        }
         return rowView;
 
-    };
+    }
 }

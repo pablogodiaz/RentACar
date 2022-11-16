@@ -6,7 +6,16 @@
         <item>Azul</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="create_car">create car</string>
-    <string name="filtrar_por_modelo">filtrar por modelo...</string>
+    <string name="filter_by_license">filter by license...</string>
+    <string name="modelTextView">Model:</string>
+    <string name="licenseTextView">License:</string>
+    <string name="colorTextView">Color:</string>
+    <string name="kmTextView">Km:</string>
+    <string name="modelEditText">Insert model</string>
+    <string name="licenseEditText">Insert license</string>
+    <string name="kmEditText">Insert kilometres</string>
+    <string name="editButton">Edit</string>
+    <string name="deleteButton">Delete</string>
+    <string name="searchButton">Search</string>
 </resources>

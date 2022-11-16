@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AlquilarCoche</string>
+    <string name="create_car">crear_coche</string>
+    <string name="filter_by_license">filtrar por matricula...</string>
+    <string name="modelTextView">Modelo:</string>
+    <string name="licenseTextView">Matricula:</string>
+    <string name="colorTextView">Color:</string>
+    <string name="kmTextView">Km:</string>
+    <string name="modelEditText">Insertar modelo</string>
+    <string name="licenseEditText">Insertar matricula</string>
+    <string name="kmEditText">Insertar kilometros</string>
+    <string name="editButton">Editar</string>
+    <string name="deleteButton">Borrar</string>
+    <string name="searchButton">Buscar</string>
+</resources>
