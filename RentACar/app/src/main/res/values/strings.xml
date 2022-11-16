@@ -1,13 +1,18 @@
 <resources>
     <string name="app_name">RentACar</string>
     <string-array name="SpinnerItems">
-        <item>Blanco</item>
-        <item>Gris</item>
-        <item>Negro</item>
-        <item>Plata</item>
-        <item>Azul</item>
+        <item>@string/white</item>
+        <item>@string/grey</item>
+        <item>@string/black</item>
+        <item>@string/silver</item>
+        <item>@string/blue</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="white">White</string>
+    <string name="grey">Grey</string>
+    <string name="black">Black</string>
+    <string name="silver">Silver</string>
+    <string name="blue">Blue</string>
     <string name="create_car">create car</string>
     <string name="filter_by_license">filter by license...</string>
     <string name="modelTextView">Model:</string>

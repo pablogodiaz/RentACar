@@ -1,3 +1,4 @@
+// Pablo Gonzalez Diaz y Alfonso Gonzalez Ortiz
 package com.example.rentacar;
 
 import android.annotation.SuppressLint;
@@ -13,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
 
     private SQLiteDatabase db;
