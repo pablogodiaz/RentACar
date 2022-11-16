@@ -8,9 +8,12 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.Scanner;
 
 public class EditCar extends AppCompatActivity {
 
@@ -42,11 +45,14 @@ public class EditCar extends AppCompatActivity {
         matricula = extras.get(CarContract.CarEntry.COLUMN_NAME_MATRICULA).toString();
         String modelo = extras.get(CarContract.CarEntry.COLUMN_NAME_MODELO).toString();
         String km = extras.get(CarContract.CarEntry.COLUMN_NAME_KM).toString();
+        String color = extras.get(CarContract.CarEntry.COLUMN_NAME_COLOR).toString();
 
         // Rellenamos los campos con la información obtenida
         modeloEditText.setText(modelo);
         matriculaEditText.setText(matricula);
         kmEditText.setText(km);
+        colorSpinner.setSelection(getIndex(colorSpinner, color));
+
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -60,9 +66,9 @@ public class EditCar extends AppCompatActivity {
     private void editCar() {
 
         // Obtenemos el valor de los componentes
-        String modelo = modeloEditText.getText().toString().toLowerCase();
-        String km = kmEditText.getText().toString().toLowerCase();
-        String newMatricula = matriculaEditText.getText().toString().toLowerCase();
+        String modelo = modeloEditText.getText().toString();
+        String km = kmEditText.getText().toString();
+        String newMatricula = matriculaEditText.getText().toString().toUpperCase();
 
         // Establecemos la condición where de la sentencia
         String where = CarContract.CarEntry.COLUMN_NAME_MATRICULA + " = ?";
@@ -74,7 +80,7 @@ public class EditCar extends AppCompatActivity {
 
         //MODELO
         if(!modelo.equalsIgnoreCase("")){
-            values.put(CarContract.CarEntry.COLUMN_NAME_MODELO,modelo);
+            values.put(CarContract.CarEntry.COLUMN_NAME_MODELO,firstLetterUppercase(modelo));
         }else{
             Toast.makeText(getApplicationContext(),"Introduzca un modelo",Toast.LENGTH_SHORT).show();
 
@@ -115,7 +121,7 @@ public class EditCar extends AppCompatActivity {
     private void deleteCar() {
 
         //Obtenemos el valor de la matricula
-        String matricula = matriculaEditText.getText().toString().toLowerCase();
+        String matricula = matriculaEditText.getText().toString().toUpperCase();
 
         // Establecemos la condición where de la sentencia
         String where = CarContract.CarEntry.COLUMN_NAME_MATRICULA + " = ?";
@@ -134,4 +140,25 @@ public class EditCar extends AppCompatActivity {
         startActivity(intento);
     }
 
+    private int getIndex(Spinner spinner, String myString){
+        for (int i=0;i<spinner.getCount();i++){
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(myString)){
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    private String firstLetterUppercase(String s) {
+        Scanner sc = new Scanner(s);
+        sc.useDelimiter(" ");
+        String result = "";
+        while(sc.hasNext()) {
+            String aux = sc.next();
+            aux = aux.substring(0, 1).toUpperCase() + aux.substring(1);
+            result += aux + " ";
+        }
+        sc.close();
+        return result;
+    }
 }

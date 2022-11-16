@@ -2,7 +2,9 @@
     <string name="app_name">RentACar</string>
     <string-array name="SpinnerItems">
         <item>Blanco</item>
+        <item>Gris</item>
         <item>Negro</item>
+        <item>Plata</item>
         <item>Azul</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->

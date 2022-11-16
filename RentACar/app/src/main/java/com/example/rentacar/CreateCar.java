@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.Locale;
+import java.util.Scanner;
+
 public class CreateCar extends AppCompatActivity {
 
     private SQLiteDatabase db;
@@ -44,9 +47,9 @@ public class CreateCar extends AppCompatActivity {
     private void createCar() {
 
         // Obtenemos el valor de los componentes
-        String modelo =  modeloEditText.getText().toString().toLowerCase();
-        String matricula = matriculaEditText.getText().toString().toLowerCase();
-        String km = KmEditText.getText().toString().toLowerCase();
+        String modelo =  modeloEditText.getText().toString();
+        String matricula = matriculaEditText.getText().toString().toUpperCase();
+        String km = KmEditText.getText().toString();
 
         // Introducimos los valores si se han introducido correctamente
         // en caso contrario mostramos un mensaje de error con el Toast
@@ -54,7 +57,7 @@ public class CreateCar extends AppCompatActivity {
 
         //MODELO
         if(!modelo.equalsIgnoreCase("")){
-            values.put(CarContract.CarEntry.COLUMN_NAME_MODELO,modelo);
+            values.put(CarContract.CarEntry.COLUMN_NAME_MODELO,firstLetterUppercase(modelo));
         }else{
             Toast.makeText(getApplicationContext(),"Introduzca un modelo",Toast.LENGTH_SHORT).show();
         }
@@ -98,4 +101,16 @@ public class CreateCar extends AppCompatActivity {
         startActivity(intento);
     }
 
+    private String firstLetterUppercase(String s) {
+        Scanner sc = new Scanner(s);
+        sc.useDelimiter(" ");
+        String result = "";
+        while(sc.hasNext()) {
+            String aux = sc.next();
+            aux = aux.substring(0, 1).toUpperCase() + aux.substring(1);
+            result += aux + " ";
+        }
+        sc.close();
+        return result;
+    }
 }

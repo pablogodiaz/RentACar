@@ -9,9 +9,14 @@
         android:layout_height="47dp"
         android:orientation="horizontal">
 
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
         <TextView
             android:id="@+id/modelTextViewList"
-            android:layout_width="203dp"
+            android:layout_width="287dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
@@ -19,18 +24,18 @@
             android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#4d4d4d"
-            android:textSize="12sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/matriculaTextViewList"
-            android:layout_width="169dp"
+            android:layout_width="89dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:padding="2dp"
             android:text="TextView"
-            android:textSize="10sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 
