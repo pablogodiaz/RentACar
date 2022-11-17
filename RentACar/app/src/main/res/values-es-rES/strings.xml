@@ -5,6 +5,9 @@
     <string name="black">Negro</string>
     <string name="silver">Plateado</string>
     <string name="blue">Azul</string>
+    <string name="toastKilometer">Introduzca kilometros</string>
+    <string name="toastLicense">Introduzca una matricula</string>
+    <string name="toastModel">Introduzca un modelo</string>
     <string name="app_name">AlquilarCoche</string>
     <string name="create_car">crear_coche</string>
     <string name="filter_by_license">filtrar por matricula...</string>

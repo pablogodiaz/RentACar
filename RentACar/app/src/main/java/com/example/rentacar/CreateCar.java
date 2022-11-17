@@ -59,14 +59,14 @@ public class CreateCar extends AppCompatActivity {
         if(!modelo.equalsIgnoreCase("")){
             values.put(CarContract.CarEntry.COLUMN_NAME_MODELO,firstLetterUppercase(modelo));
         }else{
-            Toast.makeText(getApplicationContext(),"Introduzca un modelo",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),R.string.toastModel,Toast.LENGTH_SHORT).show();
         }
 
         //MATRICULA
         if(!matricula.equalsIgnoreCase("")){
             values.put(CarContract.CarEntry.COLUMN_NAME_MATRICULA,matricula);
         }else{
-            Toast.makeText(getApplicationContext(),"Introduzca una matricula",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),R.string.toastLicense,Toast.LENGTH_SHORT).show();
         }
 
         //KM
@@ -74,7 +74,7 @@ public class CreateCar extends AppCompatActivity {
             Double.parseDouble(km);
             values.put(CarContract.CarEntry.COLUMN_NAME_KM,km);
         }catch (Exception e){
-            Toast.makeText(getApplicationContext(),"Introduzca un kilometraje",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),R.string.toastKilometer,Toast.LENGTH_SHORT).show();
         }
 
         //Introducimos los valores
